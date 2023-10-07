@@ -13,8 +13,8 @@ key5=types.KeyboardButton('دانلود')
 key6=types.KeyboardButton('راهنما')
 game_keyboard.add(key1)
 
-state = None
-bot = telebot.TeleBot("Token", parse_mode=None)
+
+bot = telebot.TeleBot("6448003610:AAFUY91lIc1uC3hntVbiVnlBrC8OHK_Ls6g", parse_mode=None)
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
@@ -52,21 +52,14 @@ def guess_number(message):
 @bot.message_handler(func=lambda m: True)
 def age(message):
     
-    x=range(1,4)
-    for i in x:
-        if i==1:
-            bot.send_message(message.chat.id, "سال تولد خود را وارد کنید")
-            year = int(message.text)
-        if i==2:
-            bot.send_message(message.chat.id, "عدد ماه تولد خود را وارد کنید")
-            month = int(message.text)
-        if i==3:
-            bot.send_message(message.chat.id, "عدد روز تولد خود را وارد کنید")
-            day = int(message.text)
-    # bot.send_message(message.chat.id, year)
-    dif=khayyam.JalaliDate.today()-khayyam.JalaliDate(year, month, day)
-    bot.send_message(message.chat.id, dif)
-    print (dif)
+    bot.send_message(message.chat.id, "تاریخ تولدت رو به شکل 1/1/1401 وارد کن")
+    date_of_birth = message.text.split("/")
+    dif=khayyam.JalaliDate.today()-khayyam.JalaliDate(date_of_birth[0], date_of_birth[1], date_of_birth[2])
+    year = dif // 365
+    month = (dif - (year * 365)) // 30
+    day = dif - (year * 365 + month * 30)
+    
+    bot.send_message(message.chat.id, "سن تو: " + year + " سال و " + month + " ماه و " + day + " روز")
 
     
 @bot.message_handler(commands=['voice'])
