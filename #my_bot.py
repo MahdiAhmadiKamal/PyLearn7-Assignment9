@@ -14,7 +14,7 @@ key6=types.KeyboardButton('راهنما')
 game_keyboard.add(key1)
 
 
-bot = telebot.TeleBot("Token", parse_mode=None)
+bot = telebot.TeleBot("6448003610:AAFUY91lIc1uC3hntVbiVnlBrC8OHK_Ls6g", parse_mode=None)
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
